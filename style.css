@@ -1,0 +1,50 @@
+.contact {
+  font-family: "Archivo", sans-serif;
+  position: absolute;
+  top:20px;
+  left:20px;
+  z-index: 1;
+}
+.text {
+  font-family: "Archivo", sans-serif;
+}
+#description {
+  position:absolute;
+  top: 50vh;
+  left: 50vw;
+  display: block;
+  width: 50vw;
+  transform: translate(-50, -50);
+  z-index: -1;
+}
+h1 {
+  font-weight:300;
+  font-size: 12px;
+  color:white;
+}
+h2{
+  font-weight:300;
+  font-size: 36px;
+  color:white;
+}
+p {
+  font-weight: 100;
+  font-size: 12px;
+  color:white;
+}
+canvas {
+  position:absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 0;
+}
+.image {
+  mix-blend-mode: overlay;
+}
+#testimg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width:60%;
+}

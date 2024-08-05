@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Frog in the Web</title>
+    <link rel="shortcut icon" href="icon.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@100;300;500&display=swap" rel="stylesheet">
+  </head>
+  <body style="background:black">
+    <div class="contact">
+          <h1>yoko urano</h1>
+          <p>←psychology</p>
+    </div>
+    <canvas id="c" style="width: 100vw; height: 100vh;"></canvas>
+    <div class="text" id = "description">
+      <h2>Description text here.</h2>
+    </div>
+  </body>
+  <script  type="importmap">{
+	"imports": {
+    "three": "https://threejs.org/build/three.module.js",
+    "three/addons/": "https://threejs.org/examples/jsm/"
+    	}
+    }</script>
+
+  <script type="module">
+
+    import * as THREE from 'three';
+    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    document.body.appendChild( renderer.domElement );
+
+    // Load model
+    const loader = new GLTFLoader();
+    loader.load('models/blob.glb',
+                function(gltf){scene.add(gltf.scene);},
+                undefined,
+                function(error){console.error(error);}
+
+    );
+
+    // Camera setup
+    camera.position.z = 0;
+
+    // Render scene
+    function animate() {
+    	renderer.render(scene, camera);
+    }
+    renderer.setAnimationLoop(animate);
+
+  </script>
+</html>
