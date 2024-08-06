@@ -24,31 +24,45 @@
     "three": "https://threejs.org/build/three.module.js",
     "three/addons/": "https://threejs.org/examples/jsm/"
     	}
-    }</script>
+    }
+  </script>
 
   <script type="module">
 
     import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
     import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+    const light = new THREE.DirectionalLight(0xffffff, 1);
+    light.position.set(0, 5, 10);
+    scene.add(light);
+
+    const canvas = document.querySelector('#c');
+    const controls = new OrbitControls(camera, canvas);
+  	controls.target.set(0, 0, 0);
+  	controls.update();
 
     const renderer = new THREE.WebGLRenderer();
-    renderer.setSize( window.innerWidth, window.innerHeight );
-    document.body.appendChild( renderer.domElement );
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
 
     // Load model
     const loader = new GLTFLoader();
-    loader.load('models/blob.glb',
-                function(gltf){scene.add(gltf.scene);},
+    loader.load('https://raw.githubusercontent.com/yoko-urano/threejs-test/main/models/blob.gltf',
+                function(gltf){
+                  const model = gltf.scene;
+                  scene.add(model);
+                  console.log("Added object");
+                },
                 undefined,
                 function(error){console.error(error);}
 
     );
 
     // Camera setup
-    camera.position.z = 0;
+    camera.position.z = 2;
 
     // Render scene
     function animate() {
